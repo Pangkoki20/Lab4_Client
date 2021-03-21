@@ -93,7 +93,7 @@ import styles from '../styles/Home.module.css'
 const express = require('express')
 const app = express()
 const cors = require('cors');
-const PORT = 8000
+const PORT = 3000
 let tasks = [
   { id: 1, name: 'Do homework' },
   { id: 2, name: 'Read book' },
@@ -104,10 +104,7 @@ app.get('/', (req, res) => {
 })
 app.listen(PORT, () => console.log(`listen at ${PORT}`))
 
-
-
 // ---------------------------------------------------------------------------------------------------------- //
-
 export default function Home() {
   return (
     <div className={styles.container}>

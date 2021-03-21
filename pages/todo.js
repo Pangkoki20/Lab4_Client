@@ -1,13 +1,20 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from '../styles/Todo.module.css'
-const Todo = ({ avatar_url, login }) => { //การสรา้ง HTTP Request
+const Todo = ({ avatar_url, login }) => { //การสร้าง HTTP Request
     //ใช้ state ในการเก็บข้อมูล
-    const [tasks, setTasks] = useState([
-        { id: 1, name: 'Do homework' },
-        { id: 2, name: 'Read book' }])
+    const [tasks, setTasks] = useState([])
+    //{ id: 1, name: 'Do homework' },
+    //{ id: 2, name: 'Read book' }
 
     const [name, setName] = useState('')
     const [idEdit, setIdEdit] = useState(0)
+
+    //useEffect ทำการ run ทุกครั้งที่มีการ render หรือทุกครั้งที่มีการ update
+    useEffect(async () => {
+        let ts = await getTasks();
+        console.log(ts)
+        setTasks(ts)
+    }, [])
 
     const renderTasks = () => {
         if (tasks !== null)
@@ -63,6 +70,15 @@ const Todo = ({ avatar_url, login }) => { //การสรา้ง HTTP Reques
         </div>
     )
 }
+// ---------------------------------------------------------------------------------------------------------- //
+//FrondEnd ทำการเรียกการทำงาน
+const getTasks = async () => {
+    const res = await fetch('http://localhost:3000/')
+    const json = await res.json()
+    console.log(json)
+    return json;
+}
+
 Todo.getInitialProps = async (ctx) => {
     const res = await fetch('https://api.github.com/users/Pangkoki20')
     const json = await res.json()
