@@ -11,14 +11,44 @@ import styles from '../styles/Home.module.css'
 // console.log('Server is ready !! ');
 // ---------------------------------------------------------------------------------------------------------- //
 //การรอรับ GET method และทำการส่งข้อมูลกลับไปให้ Client โดยคำสั่ง res.send
-var express = require('express');
-var app = express();
 
-app.get('/greeting', (req, res) => {
-  let greetText = req.query.str1 + " " + req.query.str2
-  res.send(`<html><h1 style="align:center;" >${greetText}</h1></body></html>`)
-})
+//Query String
+// const express = require('express');
+// const app = express();
+// app.get('/greeting', (req, res) => {
+//   let greetText = req.query.str1 + " " + req.query.str2
+//   res.send(`<html><h1 style="align:center;" >${greetText}</h1></body></html>`)
+// })
+// app.listen(3000);
+
+// ---------------------------------------------------------------------------------------------------------- //
+
+//Params
+// const express = require('express');
+// const app = express();
+// app.get('/greeting/:str1/:str2', (req, res) => {
+//   console.log(req)
+//   let greetText = req.params.str1 + " " + req.params.str2
+//   res.send(`<html><body><h1 style="align:center;">Hey:
+// ${greetText}</h1></body></html>`)
+// })
+// app.listen(3000);
+
+// ---------------------------------------------------------------------------------------------------------- //
+
+//Body parser
+
+const express = require('express'),
+  app = express(),
+  bodyParser = require('body-parser');
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
+app.use(express.static(__dirname + '/public'));
+app.post('/add', urlencodedParser, function (req, res) {
+  let result = parseInt(req.body.a) + parseInt(req.body.b);
+  res.send('Result = ' + result);
+});
 app.listen(3000);
+
 
 export default function Home() {
   return (
