@@ -2,13 +2,22 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
 //ทำการเปิด port 8000 รอรับการเชื่อมต่อ ถ้ามี Client ร้องขอหน้า page ที่ Server จะทำการตอบ status 200 พร้อมกับ Hello World
-var http = require('http');
-var server = http.createServer(function (req, res) {
-  res.writeHead(200, { 'Content-type': 'text/plain' });
-  res.end('Hello World \n');
+// var http = require('http');
+// var server = http.createServer(function (req, res) {
+//   res.writeHead(200, { 'Content-type': 'text/plain' });
+//   res.end('Hello World \n');
+// });
+// server.listen(8000);
+// console.log('Server is ready !! ');
+// ---------------------------------------------------------------------------------------------------------- //
+//การรอรับ GET method และทำการส่งข้อมูลกลับไปให้ Client โดยคำสั่ง res.send
+var express = require('express');
+var app = express();
+
+app.get('/', function (req, res) {
+  res.send('Hello World')
 });
-server.listen(8000);
-console.log('Server is ready !! ');
+app.listen(8000);
 
 export default function Home() {
   return (
