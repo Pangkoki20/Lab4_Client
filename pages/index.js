@@ -23,7 +23,8 @@ import styles from '../styles/Home.module.css'
 
 // ---------------------------------------------------------------------------------------------------------- //
 
-//Params
+//Params ******
+// ******************************************************************************************************** //
 // const express = require('express');
 // const app = express();
 // app.get('/greeting/:str1/:str2', (req, res) => {
@@ -37,17 +38,16 @@ import styles from '../styles/Home.module.css'
 // ---------------------------------------------------------------------------------------------------------- //
 
 //Body parser
-
-const express = require('express'),
-  app = express(),
-  bodyParser = require('body-parser');
-const urlencodedParser = bodyParser.urlencoded({ extended: false });
-app.use(express.static(__dirname + '/public'));
-app.post('/add', urlencodedParser, function (req, res) {
-  let result = parseInt(req.body.a) + parseInt(req.body.b);
-  res.send('Result = ' + result);
-});
-app.listen(3000);
+// const express = require('express'),
+//   app = express(),
+//   bodyParser = require('body-parser');
+// const urlencodedParser = bodyParser.urlencoded({ extended: false });
+// app.use(express.static(__dirname + '/public'));
+// app.post('/add', urlencodedParser, function (req, res) {
+//   let result = parseInt(req.body.a) + parseInt(req.body.b);
+//   res.send('Result = ' + result);
+// });
+// app.listen(3000);
 
 
 export default function Home() {
