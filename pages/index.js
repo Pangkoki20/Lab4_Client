@@ -11,7 +11,6 @@ import styles from '../styles/Home.module.css'
 // console.log('Server is ready !! ');
 // ---------------------------------------------------------------------------------------------------------- //
 //การรอรับ GET method และทำการส่งข้อมูลกลับไปให้ Client โดยคำสั่ง res.send
-
 //Query String
 // const express = require('express');
 // const app = express();
@@ -22,7 +21,6 @@ import styles from '../styles/Home.module.css'
 // app.listen(3000);
 
 // ---------------------------------------------------------------------------------------------------------- //
-
 //Params ******
 // ******************************************************************************************************** //
 // const express = require('express');
@@ -36,7 +34,6 @@ import styles from '../styles/Home.module.css'
 // app.listen(3000);
 
 // ---------------------------------------------------------------------------------------------------------- //
-
 //Body parser
 // const express = require('express'),
 //   app = express(),
@@ -48,6 +45,22 @@ import styles from '../styles/Home.module.css'
 //   res.send('Result = ' + result);
 // });
 // app.listen(3000);
+
+// ---------------------------------------------------------------------------------------------------------- //
+//Cookie ใช้เก็บข้อมูลฝั่งผู้ใช้ ผ่าน middleware
+const express = require('express')
+const app = express()
+const cookieParser = require('cookie-parser')
+app.use(cookieParser('keyboard cat')) //‘keyboard cat’ is a secret key to sign cookie (prevent cookie tamper)
+app.get('/ck_get', function (req, res) {
+  res.send(req.cookies)
+})
+app.get('/ck_set', function (req, res) {
+  res.cookie('a', 10)
+  res.send('ok')
+})
+app.listen(3000)
+// ---------------------------------------------------------------------------------------------------------- //
 
 
 export default function Home() {
